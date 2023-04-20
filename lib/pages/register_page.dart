@@ -1,13 +1,15 @@
 import 'package:codigo6_states/providers/example_provider.dart';
 import 'package:codigo6_states/providers/person_provider.dart';
+import 'package:codigo6_states/providers/post_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class RegisterPage extends StatelessWidget {
   TextEditingController registerCtrl = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    PostProvider postProvider =
+        Provider.of<PostProvider>(context, listen: false);
     // ExampleProvider exampleProvider =
     // Provider.of<ExampleProvider>(context);
     PersonProvider personProvider = Provider.of<PersonProvider>(context);
@@ -38,6 +40,11 @@ class RegisterPage extends StatelessWidget {
               Consumer<ExampleProvider>(
                 builder: (context, provider, _) {
                   return Text(provider.contador.toString());
+                },
+              ),
+              Consumer<PostProvider>(
+                builder: (context, value, _) {
+                  return Text(postProvider.posts.toString());
                 },
               ),
               // Text( exampleProvider.contador.toString())

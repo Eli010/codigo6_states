@@ -10,10 +10,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ExampleProvider exampleProvider = Provider.of<ExampleProvider>(context);
-    PersonProvider personProvider = Provider.of<PersonProvider>(context);
+    //PRROVIDER DE POSTPROVIDER
+    //recibimos información para eso cambiaremos listen= false
     PostProvider postProvider =
-        Provider.of<PostProvider>(context, listen: true);
+        Provider.of<PostProvider>(context, listen: false);
+    //obtiene informacion y notificamos
+    postProvider.getPost2();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.indigo,
@@ -30,16 +32,9 @@ class HomePage extends StatelessWidget {
         child: const Icon(Icons.add),
       ),
       //USAREMOS NUESTRO APISERVICE- Y PROVIDER
-      body: FutureBuilder(
-        //traemos el dato de nuestro provider
-        future: postProvider.getPost(),
-        builder: (context, AsyncSnapshot snapshot) {
-          if (snapshot.hasData) {
-            return Text(snapshot.data.toString());
-          }
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+      body: Consumer<PostProvider>(
+        builder: (context, value, _) {
+          return Text(postProvider.posts.toString());
         },
       ),
     );
