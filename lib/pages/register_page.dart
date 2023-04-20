@@ -1,10 +1,17 @@
+import 'package:codigo6_states/providers/example_provider.dart';
+import 'package:codigo6_states/providers/person_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class RegisterPage extends StatelessWidget {
-  const RegisterPage({super.key});
-
+  TextEditingController registerCtrl = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    // ExampleProvider exampleProvider =
+    // Provider.of<ExampleProvider>(context);
+    PersonProvider personProvider = Provider.of<PersonProvider>(context);
+    print("BUILDDDDDDDDDDDDDDDDDD!!!!!");
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.pink,
@@ -14,14 +21,26 @@ class RegisterPage extends StatelessWidget {
           padding: const EdgeInsets.all(12.0),
           child: Column(
             children: [
-              const TextField(),
+              TextField(
+                controller: registerCtrl,
+              ),
               const SizedBox(
                 height: 12,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  // exampleProvider.cambiarContador(21554);
+                  personProvider.addPersons(registerCtrl.text);
+                },
                 child: const Text("Registrar"),
-              )
+              ),
+              //Para solo estar escuchando en un solo lugar
+              Consumer<ExampleProvider>(
+                builder: (context, provider, _) {
+                  return Text(provider.contador.toString());
+                },
+              ),
+              // Text( exampleProvider.contador.toString())
             ],
           ),
         ));
