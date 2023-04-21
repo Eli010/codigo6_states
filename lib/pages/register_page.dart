@@ -36,10 +36,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   if (snapshot.hasData) {
                     return Text(
                       snapshot.data.toString(),
-                      style: TextStyle(fontSize: 40.0),
+                      style: const TextStyle(fontSize: 40.0),
                     );
                   }
-                  return Text(
+                  return const Text(
                     "0",
                     style: TextStyle(fontSize: 40.0),
                   );
@@ -47,7 +47,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  registerBloc.addCounter(RegisterEvent.increment);
+                  registerBloc.addCounter(IncrementEvent(1));
                 },
                 child: const Text("Registrar"),
               )
