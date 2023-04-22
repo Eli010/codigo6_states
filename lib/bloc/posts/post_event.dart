@@ -1,11 +1,11 @@
 abstract class PostEvent {}
 
-class Event1 extends PostEvent {}
+class RegisterPostEvent extends PostEvent {}
 
-class Event2 extends PostEvent {}
+class DeletePostEvent extends PostEvent {}
 
-class Event3 extends PostEvent {}
+class GetPostEvent extends PostEvent {}
 
-class Event4 extends PostEvent {}
+// class Event4 extends PostEvent {}
 
-class Event5 extends PostEvent {}
+// class Event5 extends PostEvent {}

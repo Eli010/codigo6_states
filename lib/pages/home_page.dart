@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
           //     MaterialPageRoute(
           //       builder: (context) => RegisterPage(),
           //     ));
-          BlocProvider.of<PostBloc>(context).add(Event2());
+          BlocProvider.of<PostBloc>(context).add(GetPostEvent());
         },
         child: const Icon(Icons.add),
       ),
