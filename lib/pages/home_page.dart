@@ -42,10 +42,19 @@ class HomePage extends StatelessWidget {
           ),
           BlocBuilder<PostBloc, PostState>(
             builder: (BuildContext context, PostState state) {
-              return Text(
-                state.toString(),
-                style: TextStyle(fontSize: 30),
-              );
+              if (state is PostInitState || state is PostLoadingState) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (state is PostSuccedState) {
+                List posts = state.data;
+                return Text(
+                  posts.toString(),
+                  style: const TextStyle(fontSize: 30),
+                );
+              } else {
+                return const SizedBox();
+              }
             },
           )
         ],
